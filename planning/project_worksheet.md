@@ -14,6 +14,7 @@ Being a game lover, and wanting to be a game dev myself, I've always wanted to b
 - [Landing Page](https://imgur.com/witmlcG)
 - [Game Page](https://imgur.com/N0VpPAj)
 - [Leaderboard Page (PostMVP)](https://imgur.com/oOcwsk0)
+- [About Page](https://imgur.com/lGciait)
 
 ## React Architecture Tree
 I am not certain if I can integrate React into Python, I'll have to figure that out. However, the following would
@@ -41,7 +42,7 @@ be the structure I'd use to design my app regardless of a framework/library.
 - Create a fleet of aliens to destroy (using dictionaries in Python)
 - Continue to make refinements, such as setting limits on the number of ships a user can use, 
   increasing the difficulties, etc...
-- Add a Scoreboard and a Leader Board based
+- Add a Scoreboard and a Leader Board
 - Finally, add an about page to give a deep explanation about the game, inspirations and contact links
 
 #### PostMVP
