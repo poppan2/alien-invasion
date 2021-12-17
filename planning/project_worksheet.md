@@ -71,7 +71,6 @@ be the structure I'd use to design my app regardless of a framework/library.
 | Setting up Routes   |    H     |      2hrs      |             |
 | Setting up game     |    H     |     48hrs      |             |
 | Game functionality  |    H     |     10hrs      |             |
-| Difficulty settings |    H     |      3hrs      |             |
 | User Lives          |    M     |      2hrs      |             |
 | Score               |    M     |      3hrs      |             |
 | Leaderboard         |    L     |     10hrs      |             |
