@@ -75,7 +75,7 @@ be the structure I'd use to design my app regardless of a framework/library.
 | Score               |    M     |      3hrs      |             |
 | Leaderboard         |    L     |     10hrs      |             |
 | Bonus Functionality |    M     |     15hrs      |             |
-| Total               |          |     95hrs      |             |
+| Total               |          |     92hrs      |             |
 
 ## Additional Libraries
 Pygame
