@@ -1,24 +1,23 @@
-# Sudoku
+# Alien Invasion
 
 ## Project Links
 
-- [Github Repo]()
+- [Github Repo](https://github.com/poppan2/alien-invasion)
 - [Deployed Site]()
 
 ## Project Description
 
-Web app version of a famous Japanese puzzle game 'sudoku'. This game is created for me to play mainly, since I sudoku a lot on my phone, but have to watch ads after each game. Hence, this, an ads-free sudoku for any like minded sudoku enjoyers.
+Being a game lover, and wanting to be a game dev myself, I've always wanted to build a game. Henceforth, I'm stretching my skills to build an Alien Invasion game using Python (Pygame). This game will have a ship that moves right and left, and fires bullets to destroy a fleet of aliens in response to player input. Inspired by Battlestar Galactica/Galaga game. 
 
 ## Wireframes
 
-Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe. Also, define the the React components and the architectural design of your app.
+- [Landing Page](https://imgur.com/witmlcG)
+- [Game Page](https://imgur.com/N0VpPAj)
+- [Leaderboard Page (PostMVP)](https://imgur.com/oOcwsk0)
 
-- [Landing Page](https://imgur.com/a/petBG3E)
-- [Game Page](https://imgur.com/a/Sq8scf4)
-- [About Page](https://imgur.com/a/3ZrSwzc)
-- [Leaderboard Page (PostMVP)](https://imgur.com/a/J4fWKay)
-
-## Reach Architecture Tree
+## React Architecture Tree
+I am not certain if I can integrate React into Python, I'll have to figure that out. However, the following would
+be the structure I'd use to design my app regardless of a framework/library.  
 
 - App
   - Header
@@ -37,54 +36,49 @@ Upload images of wireframe to cloudinary and add the link here with a descriptio
 
 #### MVP
 
-- Set up a menu/landing page with difficulty choices
-- Set up grid with data
-- Hide tiles based on difficulty
-- Set up timer after user chose difficulty
-- Set up local storage to keep track of current data
+- Set up a landing page with info about the game
+- Create a ship that can move left/right (Haven't)
+- Create a fleet of aliens to destroy (using dictionaries in Python)
+- Continue to make refinements, such as setting limits on the number of ships a user can use, 
+  increasing the difficulties, etc...
+- Add a Scoreboard and a Leader Board based
+- Finally, add an about page to give a deep explanation about the game, inspirations and contact links
 
 #### PostMVP
 
-- Add leaderboard based on different difficulty categories
+- Add Bonus features such as increase in fire power/difficulties, restore lives etc ...
 
 ## Components
-
-##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
-
-Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components.
 
 | Component                 |                                  Description                                  |
 | ------------------------- | :---------------------------------------------------------------------------: |
 | App                       |                       Contains Header, Body, and Footer                       |
-| Header                    |         Include nav bar linking to Menu, Game, Leaderboard and About          |
-| Body                      |              In depth view of Menu, Game, Leaderboard and About               |
+| Header                    |         Include nav bar linking to Menu, Game, Leaderboard          |
+| Body                      |              In depth view of Menu, Game, Leaderboard               |
 | Footer                    |                                Copyright text                                 |
-| Menu/Landing Page         |                  View for user to choose difficulty setting                   |
-| Game Page                 |  View for user to play the game itself, and contains grid, score, and timer   |
-| Grid                      |         Include 91 tiles, and some empty based to selected difficulty         |
-| Score                     |              User score calculated based on time and difficulty               |
+| Menu/Landing Page         |                  View for user to get familiar with the game                   |
+| Game Page                 |  View for user to play the game itself. Contain a ship, aliens, & ascore board   |
+| Score                     |              User score calculated based on number of aliens destroyed        |
 | About                     | Description of the game, inspiration, and link to other game and github repos |
-| Leaderboard Page(PostMVP) |      Leaderboard of user scores, sorted by different difficulty settings      |
+| Leaderboard Page(PostMVP) |      Leaderboard of user scores, sorted by highest to lowest      |
 | User                      |                              User name and score                              |
 
-Time frames are also key in the development cycle. You have limited time to code all phases of the game. Your estimates can then be used to evaluate game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe. Also, put a gif at the top of your Readme before you pitch, and you'll get a panda prize.
 
 | Component           | Priority | Estimated Time | Actual Time |
 | ------------------- | :------: | :------------: | :---------: |
-| Setting up App      |    H     |      1hrs      |             |
+| Setting up App      |    H     |      2hrs      |             |
 | Setting up Routes   |    H     |      2hrs      |             |
-| Setting up game     |    H     |     40hrs      |             |
-| Game functionality  |    H     |      5hrs      |             |
-| Difficulty settings |    H     |      2hrs      |             |
-| Timer               |    M     |      2hrs      |             |
-| Score               |    M     |      1hrs      |             |
-| Local storage       |    M     |      2hrs      |             |
+| Setting up game     |    H     |     48hrs      |             |
+| Game functionality  |    H     |     10hrs      |             |
+| Difficulty settings |    H     |      3hrs      |             |
+| User Lives          |    M     |      2hrs      |             |
+| Score               |    M     |      3hrs      |             |
 | Leaderboard         |    L     |     10hrs      |             |
-| Total               |          |     65hrs      |             |
+| Bonus Functionality |    M     |     15hrs      |             |
+| Total               |          |     95hrs      |             |
 
 ## Additional Libraries
-
-Use this section to list all supporting libraries and their role in the project such as Axios, ReactStrap, D3, etc.
+Pygame
 
 ## Code Snippet
 
