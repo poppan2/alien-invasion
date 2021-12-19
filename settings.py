@@ -9,3 +9,9 @@ class Settings():
     
         # ship settings
         self.ship_speed = 1.5
+
+        # Bullet settings
+        self.bullet_speed = 1
+        self.bullet_width = 3
+        self.bullet_height = 10
+        self.bullet_color = (255, 0, 0)
