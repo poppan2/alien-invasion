@@ -17,9 +17,14 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets):
         # Move the ship to the Down
         ship.moving_down = True
     elif event.key == pygame.K_SPACE:
-        # Create a new bullet and add it to the bullets group
-        new_bullet = Bullet(ai_settings, screen, ship)
-        bullets.add(new_bullet)
+        # Check if the length of bullets is less than the bullets limit
+        if len(bullets) < ai_settings.bullets_limit:
+            # Create a new bullet and add it to the bullets group
+            new_bullet = Bullet(ai_settings, screen, ship)
+            bullets.add(new_bullet)
+    # Create shortcut key for quitting the game
+    elif event.key == pygame.K_Q:
+        sys.exit()
 
 def check_keyup_event(event, ship):
     """Respond to key release"""
@@ -50,11 +55,25 @@ def update_screen(ai_settings, screen, ship, bullets):
     # Change the backround color of the screen 
     screen.fill(ai_settings.bg_color)
 
-    # Redraw all bullets behind ship and aliens
+    # Redraw the bullets on the screen
     for bullet in bullets.sprites():
         bullet.draw_bullet()
+
     # Draw the ship on screen
     ship.blit_ship()
 
     # Make the most recently drawn screen visible
     pygame.display.flip()
+
+def update_ship(ship):
+    """Update the position of the ship"""
+    ship.update()
+
+def update_bullets(bullets):
+    """Update the position of and remove the bullets"""
+    # Update bullet position
+    bullets.update()
+    # Get rid of bullets that went out of screen
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
