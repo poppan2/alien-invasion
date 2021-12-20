@@ -1,6 +1,20 @@
 import sys
 import pygame
 from bullet import Bullet
+from alien import Alien
+
+def create_alien_fleet(ai_settings, screen, aliens):
+    """Create a fleet of aliens"""
+    alien = Alien(ai_settings, screen)
+    alien_width = alien.rect.width
+    # Find out how many aliens can fit the screen across x-axis
+    space_x = ai_settings.screen_width - (2 * alien_width)
+    number_of_aliens = int(space_x/(2 * alien_width))
+    # Create the first row of aliens
+    for num_alien in range(number_of_aliens):
+        alien = Alien(ai_settings, screen)
+        alien.rect.x = alien_width * (1 + 2 * num_alien)
+        aliens.add(alien)
 
 def check_keydown_event(event, ai_settings, screen, ship, bullets):
     """Respond to key press"""
@@ -50,7 +64,7 @@ def check_events(ai_settings, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_event(event,ship)
 
-def update_screen(ai_settings, screen, ship, alien,  bullets):
+def update_screen(ai_settings, screen, ship, aliens,  bullets):
     """Update images on the screen and flip to the new screen"""
     # Change the backround color of the screen 
     screen.fill(ai_settings.bg_color)
@@ -62,8 +76,10 @@ def update_screen(ai_settings, screen, ship, alien,  bullets):
     # Draw the ship on screen
     ship.blit_ship()
     # Draw the alien on the screen
-    alien.blit_alien()
-    # Make the most recently drawn screen visible
+    # aliens.draw(screen)
+    for alien in aliens.sprites():
+        alien.blit_alien()
+    # Update the display surface to the screen
     pygame.display.flip()
 
 def update_ship(ship):
