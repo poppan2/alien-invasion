@@ -23,7 +23,7 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets):
             new_bullet = Bullet(ai_settings, screen, ship)
             bullets.add(new_bullet)
     # Create shortcut key for quitting the game
-    elif event.key == pygame.K_Q:
+    elif event.key == pygame.K_q:
         sys.exit()
 
 def check_keyup_event(event, ship):
@@ -50,7 +50,7 @@ def check_events(ai_settings, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_event(event,ship)
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, alien,  bullets):
     """Update images on the screen and flip to the new screen"""
     # Change the backround color of the screen 
     screen.fill(ai_settings.bg_color)
@@ -61,7 +61,8 @@ def update_screen(ai_settings, screen, ship, bullets):
 
     # Draw the ship on screen
     ship.blit_ship()
-
+    # Draw the alien on the screen
+    alien.blit_alien()
     # Make the most recently drawn screen visible
     pygame.display.flip()
 
