@@ -3,18 +3,28 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 
-def create_alien_fleet(ai_settings, screen, aliens):
+def create_alien_fleet(ai_settings, screen, aliens, ship):
     """Create a fleet of aliens"""
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
+    alien_height = alien.rect.height
+    ship_height = ship.rect.height
     # Find out how many aliens can fit the screen across x-axis
     space_x = ai_settings.screen_width - (2 * alien_width)
-    number_of_aliens = int(space_x/(2 * alien_width))
-    # Create the first row of aliens
-    for num_alien in range(number_of_aliens):
-        alien = Alien(ai_settings, screen)
-        alien.rect.x = alien_width * (1 + 2 * num_alien)
-        aliens.add(alien)
+    number_of_aliens = int(space_x/(3 * alien_width))
+    # Find out how many alien rows can fit the screen across y-axis
+    space_y = ai_settings.screen_height - (3.5 * alien_height + ship_height)
+    number_of_rows = int(space_y/(3.5 * alien_height))
+    # Create the fleet of aliens
+    for num_row in range (number_of_rows):
+        for num_alien in range(number_of_aliens):
+            alien = Alien(ai_settings, screen)
+            if num_row % 2 != 0:
+                alien.rect.x = alien_width * (2 + 2 * num_alien)
+            else:
+                alien.rect.x = alien_width * (1 + 2 * num_alien)
+            alien.rect.y = alien_height * (1 + 2 * num_row)
+            aliens.add(alien)
 
 def check_keydown_event(event, ai_settings, screen, ship, bullets):
     """Respond to key press"""
