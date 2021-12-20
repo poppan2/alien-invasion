@@ -1,6 +1,8 @@
 import pygame
 
 class Ship():
+    """A class to create a Space Ship"""
+
     def __init__(self, ai_settings, screen):
         """Initialize the ship and set its starting position."""
         self.screen = screen
@@ -13,8 +15,8 @@ class Ship():
         # screen rect
         self.screen_rect = screen.get_rect()
 
-        # Start each new ship at the bottom center of the screen
-        # the x-coordinate of the ship's center
+        # Start a new ship at the bottom center of the screen
+        # the x-coordinate & and y-coordinate of the ship's center
         self.rect.centerx = self.screen_rect.centerx
         self.rect.centery = self.screen_rect.centery
         self.rect.bottom = self.screen_rect.bottom
