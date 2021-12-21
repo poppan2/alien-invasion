@@ -48,6 +48,11 @@ class Ship():
         self.rect.centerx = self.centerx
         self.rect.centery = self.centery
 
+    def center(self):
+        """Center the ship on the screen"""
+        self.centerx = self.screen_rect.centerx
+        self.centery = self.screen_rect.bottom - 1/2 * self.rect.height
+
     def blit_ship(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect) 
