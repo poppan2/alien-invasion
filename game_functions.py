@@ -16,7 +16,7 @@ def create_alien_fleet(ai_settings, screen, aliens, ship):
     space_y = ai_settings.screen_height - (3.5 * alien_height + ship_height)
     number_of_rows = int(space_y/(3.5 * alien_height))
     # Create the fleet of aliens
-    for num_row in range (number_of_rows):
+    for num_row in range(number_of_rows):
         for num_alien in range(number_of_aliens):
             alien = Alien(ai_settings, screen)
             if num_row % 2 != 0:
@@ -25,6 +25,18 @@ def create_alien_fleet(ai_settings, screen, aliens, ship):
                 alien.rect.x = alien_width * (1 + 2 * num_alien)
             alien.rect.y = alien_height * (1 + 2 * num_row)
             aliens.add(alien)
+
+def change_direction(ai_settings, aliens):
+    """Change direction of aliens upon reaching the screen edges"""
+    for alien in aliens.sprites():
+        # Check if an alien is at the edge of the screen
+        if alien.check_alien_edges():
+            for alien in aliens.sprites():
+                # Drop down by the unit of alien_speed 
+                alien.rect.y += ai_settings.alien_speed_y
+            # Change the direction of the alien fleet
+            ai_settings.alien_direction *= -1
+            break
 
 def check_keydown_event(event, ai_settings, screen, ship, bullets):
     """Respond to key press"""
@@ -78,11 +90,9 @@ def update_screen(ai_settings, screen, ship, aliens,  bullets):
     """Update images on the screen and flip to the new screen"""
     # Change the backround color of the screen 
     screen.fill(ai_settings.bg_color)
-
     # Redraw the bullets on the screen
     for bullet in bullets.sprites():
         bullet.draw_bullet()
-
     # Draw the ship on screen
     ship.blit_ship()
     # Draw the alien on the screen
@@ -104,3 +114,8 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+        
+def update_aliens(ai_settings, aliens):
+    """Update the position of aliens"""
+    change_direction(ai_settings, aliens)
+    aliens.update()
