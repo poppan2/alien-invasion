@@ -9,15 +9,16 @@ class Settings():
     
         # ship settings
         self.ship_speed = 1.5
+        self.ship_lives = 3
 
         # Bullet settings
         self.bullet_speed = 1
-        self.bullet_width = 3
+        self.bullet_width = 300
         self.bullet_height = 10
         self.bullet_color = (255, 0, 0)
         self.bullets_limit = 10
 
         # Alien settings
-        self.alien_speed_x = 1
+        self.alien_speed_x = 3
         self.alien_speed_y = 10
         self.alien_direction = 1
