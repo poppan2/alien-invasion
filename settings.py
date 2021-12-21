@@ -18,4 +18,6 @@ class Settings():
         self.bullets_limit = 10
 
         # Alien settings
-        self.alien_speed = 1
+        self.alien_speed_x = 1
+        self.alien_speed_y = 10
+        self.alien_direction = 1
