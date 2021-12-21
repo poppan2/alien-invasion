@@ -106,7 +106,7 @@ def update_ship(ship):
     """Update the position of the ship"""
     ship.update()
 
-def update_bullets(bullets, aliens):
+def update_bullets(ai_settings, screen, ship, bullets, aliens):
     """Update the position of and remove the bullets"""
     # Update bullet position
     bullets.update()
@@ -116,6 +116,10 @@ def update_bullets(bullets, aliens):
             bullets.remove(bullet)
     # Check whether an alien has been hit & remove both the bullet and the alien if so
     pygame.sprite.groupcollide(bullets, aliens, True, True)
+    # If no more aliens, then empty the bullet and repopulate another alien fleet
+    if len(aliens) == 0:
+        bullets.empty()
+        create_alien_fleet(ai_settings, screen, aliens, ship)
         
 def update_aliens(ai_settings, aliens):
     """Update the position of aliens"""
