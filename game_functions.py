@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import pygame
 from bullet import Bullet
 from alien import Alien
@@ -86,21 +87,19 @@ def check_events(ai_settings, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_event(event,ship)
 
-def update_screen(ai_settings, screen, ship, aliens,  bullets):
-    """Update images on the screen and flip to the new screen"""
-    # Change the backround color of the screen 
-    screen.fill(ai_settings.bg_color)
-    # Redraw the bullets on the screen
-    for bullet in bullets.sprites():
-        bullet.draw_bullet()
-    # Draw the ship on screen
-    ship.blit_ship()
-    # Draw the alien on the screen
-    # aliens.draw(screen)
-    for alien in aliens.sprites():
-        alien.blit_alien()
-    # Update the display surface to the screen
-    pygame.display.flip()
+def ship_collision(ai_settings, stats, screen, ship, aliens, bullets):
+    """Respond when an alien hit the ship"""
+    # Reduce one life when the ship has been hit
+    stats.ships_left -= 1
+    # Destroy the aliens and the bullets
+    bullets.empty()
+    aliens.empty()
+    # Recreate a new alien fleet and center the ship
+    create_alien_fleet(ai_settings, screen, aliens, ship)
+    # Recenter the ship
+    ship.center()
+    # Pause for 1s
+    sleep(1)
 
 def update_ship(ship):
     """Update the position of the ship"""
@@ -121,7 +120,26 @@ def update_bullets(ai_settings, screen, ship, bullets, aliens):
         bullets.empty()
         create_alien_fleet(ai_settings, screen, aliens, ship)
         
-def update_aliens(ai_settings, aliens):
+def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     """Update the position of aliens"""
     change_direction(ai_settings, aliens)
     aliens.update()
+    # Check whether any alien has hit the ship
+    if pygame.sprite.spritecollideany(ship, aliens):
+        ship_collision(ai_settings, stats, screen, ship, aliens, bullets)
+
+def update_screen(ai_settings, screen, ship, aliens,  bullets):
+    """Update images on the screen and flip to the new screen"""
+    # Change the backround color of the screen 
+    screen.fill(ai_settings.bg_color)
+    # Redraw the bullets on the screen
+    for bullet in bullets.sprites():
+        bullet.draw_bullet()
+    # Draw the ship on screen
+    ship.blit_ship()
+    # Draw the alien on the screen
+    # aliens.draw(screen)
+    for alien in aliens.sprites():
+        alien.blit_alien()
+    # Update the display surface to the screen
+    pygame.display.flip()
