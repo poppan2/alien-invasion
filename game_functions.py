@@ -62,9 +62,8 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens
             bullets.add(new_bullet)
     # Create shortcut key for playing the game
     elif event.key == pygame.K_p and not stats.run_game:
-        # Reset the stats
-        stats.reset_stats()
-        stats.run_game = True
+        # Reset the game
+        reset_the_stats(stats)
         reset_the_screen(ai_settings, screen, aliens, bullets, ship)
         pygame.time.delay(200)
     # Create shortcut key for quitting the game
@@ -92,10 +91,8 @@ def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x,y = event.pos
             if play_button.rect.collidepoint(x,y) and not stats.run_game:
-                # Reset the game stats
-                stats.reset_stats()
-                stats.run_game = True
-                # Restart the game
+                # Reset the game
+                reset_the_stats(stats)
                 reset_the_screen(ai_settings, screen, aliens, bullets, ship)
                 pygame.time.delay(200)
         # If the arrow Keys are pressed, we move the ship
@@ -104,6 +101,12 @@ def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens)
         # When the arrow keys are released, we stop the movement
         elif event.type == pygame.KEYUP:
             check_keyup_event(event,ship)
+
+def reset_the_stats(stats):
+    # Hide the mouse cursor
+    pygame.mouse.set_visible(False)
+    stats.reset_stats()
+    stats.run_game = True
 
 def reset_the_screen(ai_settings, screen, aliens, bullets, ship):
     # Destory the aliens and the bullets
@@ -124,6 +127,7 @@ def restart_the_game(ai_settings, stats, screen, ship, aliens, bullets):
         pygame.time.delay(1000)
     else: 
         stats.run_game = False
+        pygame.mouse.set_visible(True)
 
 def check_ship_collision(ai_settings, stats, screen, ship, aliens, bullets):
     """Respond when an alien hit the ship"""
