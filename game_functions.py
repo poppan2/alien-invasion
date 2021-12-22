@@ -175,7 +175,7 @@ def update_bullets(ai_settings, screen, ship, bullets, aliens):
         ai_settings.increase_speed()
         create_alien_fleet(ai_settings, screen, aliens, ship)
 
-def update_screen(ai_settings, screen, ship, aliens, bullets, play_button, stats):
+def update_screen(ai_settings, screen, ship, aliens, bullets, play_button, stats, score_board):
     """Update images on the screen and flip to the new screen"""
     # Change the backround color of the screen 
     screen.fill(ai_settings.bg_color)
@@ -190,5 +190,7 @@ def update_screen(ai_settings, screen, ship, aliens, bullets, play_button, stats
         alien.blit_alien()
     if not stats.run_game:
         play_button.draw_button_and_text()
+    # Drow the scoreboard on the screen
+    score_board.blit_score()
     # Update the display surface to the screen
     pygame.display.flip()
