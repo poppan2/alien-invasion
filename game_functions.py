@@ -62,6 +62,8 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens
             bullets.add(new_bullet)
     # Create shortcut key for playing the game
     elif event.key == pygame.K_p and not stats.run_game:
+        # Reset the game settings
+        ai_settings.initial_speed()
         # Reset the game
         reset_the_stats(stats)
         reset_the_screen(ai_settings, screen, aliens, bullets, ship)
@@ -91,6 +93,8 @@ def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x,y = event.pos
             if play_button.rect.collidepoint(x,y) and not stats.run_game:
+                # Reset the game settings
+                ai_settings.initial_speed()
                 # Reset the game
                 reset_the_stats(stats)
                 reset_the_screen(ai_settings, screen, aliens, bullets, ship)
@@ -168,6 +172,7 @@ def update_bullets(ai_settings, screen, ship, bullets, aliens):
     # If no more aliens, then empty the bullet and repopulate another alien fleet
     if len(aliens) == 0:
         bullets.empty()
+        ai_settings.increase_speed()
         create_alien_fleet(ai_settings, screen, aliens, ship)
 
 def update_screen(ai_settings, screen, ship, aliens, bullets, play_button, stats):
