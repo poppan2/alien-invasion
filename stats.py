@@ -6,3 +6,4 @@ class Game_Stats():
 
     def reset_stats(self):
         self.ships_left = self.ai_settings.ship_lives
+        self.score = 0
