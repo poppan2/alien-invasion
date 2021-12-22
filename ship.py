@@ -19,7 +19,7 @@ class Ship():
         # the x-coordinate & and y-coordinate of the ship's center
         self.rect.centerx = self.screen_rect.centerx
         self.rect.centery = self.screen_rect.centery
-        self.rect.bottom = self.screen_rect.bottom
+        self.rect.bottom = self.screen_rect.bottom - 50
         self.centerx = float(self.rect.centerx)
         self.centery = float(self.rect.centery)
         # Movement flags
@@ -42,7 +42,7 @@ class Ship():
         if self.moving_up and self.rect.top > (self.screen_rect.bottom/1.3):
             self.centery -= self.ai_settings.ship_speed
         # Stop moving down when the ship reaches the bottom of the screen
-        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom - 50:
             self.centery += self.ai_settings.ship_speed
 
         self.rect.centerx = self.centerx
@@ -51,8 +51,7 @@ class Ship():
     def center(self):
         """Center the ship on the screen"""
         self.centerx = self.screen_rect.centerx
-        self.centery = self.screen_rect.bottom - 1/2 * self.rect.height
-
+        self.bottom = self.screen_rect.bottom - 50
     def blit_ship(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect) 
