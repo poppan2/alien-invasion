@@ -8,17 +8,28 @@ class Settings():
         self.bg_color = (100, 100, 100)
     
         # ship settings
-        self.ship_speed = 1.5
         self.ship_lives = 3
 
         # Bullet settings
-        self.bullet_speed = 1
-        self.bullet_width = 300
-        self.bullet_height = 10
+        self.bullet_width = 3
+        self.bullet_height = 15
         self.bullet_color = (255, 0, 0)
         self.bullets_limit = 10
 
         # Alien settings
-        self.alien_speed_x = 3
         self.alien_speed_y = 10
+
+        # Game SpeedUp settings
+        self.speed_up_scale = 1.1
+        self.initial_speed()
+    
+    def initial_speed(self):
+        self.ship_speed = 1.5
+        self.bullet_speed = 3
+        self.alien_speed_x = 1
         self.alien_direction = 1
+
+    def increase_speed(self):
+        self.ship_speed *= self.speed_up_scale
+        self.bullet_speed *= self.speed_up_scale
+        self.alien_speed_x *= self.speed_up_scale
