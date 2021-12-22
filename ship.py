@@ -39,7 +39,7 @@ class Ship():
         if self.moving_left and self.rect.left > 0:
             self.centerx -= self.ai_settings.ship_speed
         # Stop moving up when the y-coordinate value reached half the screen height
-        if self.moving_up and self.rect.top > (self.screen_rect.bottom/2):
+        if self.moving_up and self.rect.top > (self.screen_rect.bottom/1.3):
             self.centery -= self.ai_settings.ship_speed
         # Stop moving down when the ship reaches the bottom of the screen
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
