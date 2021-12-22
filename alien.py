@@ -18,19 +18,11 @@ class Alien(Sprite):
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
-    def check_alien_edges(self):
-        screen_rect = self.screen.get_rect()
-        if self.rect.right >= screen_rect.right:
-            return True
-        elif self.rect.left <= 0:
-            return True
-
     def update(self):
         """Move the aliens across the screen left right"""
         self.x = float(self.rect.x)
         self.x += (self.ai_settings.alien_speed_x * self.ai_settings.alien_direction)
         self.rect.x = self.x
-
 
     def blit_alien(self):
         """Draw the alien on the screen"""
