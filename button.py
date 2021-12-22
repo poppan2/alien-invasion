@@ -13,11 +13,11 @@ class Play_Button():
         self.rect = pygame.Rect(0,0, self.width, self.height)
         self.rect.center = self.screen_rect.center
         # Render the text and center
-        self.message_img = self.text_font.render("Play", True, self.text_color)
-        self.message_img_rect = self.message_img.get_rect()
-        self.message_img_rect.center = self.rect.center
+        self.text_img = self.text_font.render("Play", True, self.text_color)
+        self.text_img_rect = self.text_img.get_rect()
+        self.text_img_rect.center = self.rect.center
         
     def draw_button_and_text(self):
         """Fill the button and draw text onto the screen"""
         self.screen.fill(self.color, self.rect)
-        self.screen.blit(self.message_img, self.message_img_rect)
+        self.screen.blit(self.text_img, self.text_img_rect)
