@@ -14,7 +14,7 @@ def create_alien_fleet(ai_settings, screen, aliens, ship):
     number_of_aliens = int(space_x/(3 * alien_width))
     # Find out how many alien rows can fit the screen across y-axis
     space_y = ai_settings.screen_height - (3.5 * alien_height + ship_height)
-    number_of_rows = int(space_y/(3.5 * alien_height))
+    number_of_rows = int(space_y/(4 * alien_height))
     # Create the fleet of aliens
     for num_row in range(number_of_rows):
         for num_alien in range(number_of_aliens):
@@ -83,7 +83,7 @@ def check_keyup_event(event, ship):
     elif event.key == pygame.K_DOWN:
         ship.moving_down = False
 
-def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens):
+def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens, score_board):
     """Respond to keypresses and mouse events"""
     for event in pygame.event.get():
         # Exit the game when the user clicks the game window's close button
@@ -141,7 +141,7 @@ def check_alien_reach_bottom(ai_settings, stats, screen, ship, aliens, bullets):
     """Check whether an alien has reached the bottom of the screen"""
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
-        if alien.rect.bottom >= screen_rect.bottom:
+        if alien.rect.bottom >= screen_rect.bottom - 50:
             restart_the_game(ai_settings, stats, screen, ship, aliens, bullets)
             break
 
@@ -159,7 +159,7 @@ def update_ship(ship):
     """Update the position of the ship"""
     ship.update()
 
-def update_bullets(ai_settings, screen, ship, bullets, aliens):
+def update_bullets(ai_settings, screen, ship, bullets, aliens, stats, score_board):
     """Update the position of and remove the bullets"""
     # Update bullet position
     bullets.update()
@@ -168,11 +168,20 @@ def update_bullets(ai_settings, screen, ship, bullets, aliens):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
     # Check whether an alien has been hit & remove both the bullet and the alien if so
-    pygame.sprite.groupcollide(bullets, aliens, True, True)
+    hit_aliens = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if hit_aliens:
+        stats.score += ai_settings.alien_score
+        if stats.score > stats.high_score:
+            stats.high_score = stats.score
+        score_board.show_score()
+        score_board.show_high_score()
+
     # If no more aliens, then empty the bullet and repopulate another alien fleet
     if len(aliens) == 0:
         bullets.empty()
         ai_settings.increase_speed()
+        stats.lvl += 1
+        score_board.show_level()
         create_alien_fleet(ai_settings, screen, aliens, ship)
 
 def update_screen(ai_settings, screen, ship, aliens, bullets, play_button, stats, score_board):
