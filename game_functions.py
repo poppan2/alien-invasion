@@ -61,7 +61,7 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens
             new_bullet = Bullet(ai_settings, screen, ship)
             bullets.add(new_bullet)
     # Create shortcut key for playing the game
-    elif event.key == pygame.K_p:
+    elif event.key == pygame.K_p and not stats.run_game:
         # Reset the stats
         stats.reset_stats()
         stats.run_game = True
@@ -91,7 +91,7 @@ def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens)
         # Start the game if the player click Play button with the mouse
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x,y = event.pos
-            if play_button.rect.collidepoint(x,y):
+            if play_button.rect.collidepoint(x,y) and not stats.run_game:
                 # Reset the game stats
                 stats.reset_stats()
                 stats.run_game = True
