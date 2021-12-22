@@ -40,7 +40,7 @@ def change_direction(ai_settings, screen, aliens):
             ai_settings.alien_direction *= -1
             break
 
-def check_keydown_event(event, ai_settings, screen, ship, bullets):
+def check_keydown_event(event, ai_settings, screen, ship, bullets, stats):
     """Respond to key press"""
     if event.key == pygame.K_RIGHT:
         # Move the ship to the right.
@@ -60,6 +60,9 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets):
             # Create a new bullet and add it to the bullets group
             new_bullet = Bullet(ai_settings, screen, ship)
             bullets.add(new_bullet)
+    # Create shortcut key for playing the game
+    elif event.key == pygame.K_p:
+        stats.run_game = True
     # Create shortcut key for quitting the game
     elif event.key == pygame.K_q:
         sys.exit()
@@ -75,15 +78,20 @@ def check_keyup_event(event, ship):
     elif event.key == pygame.K_DOWN:
         ship.moving_down = False
 
-def check_events(ai_settings, screen, ship, bullets):
+def check_events(ai_settings, screen, ship, bullets, play_button, stats):
     """Respond to keypresses and mouse events"""
     for event in pygame.event.get():
         # Exit the game when the user clicks the game window's close button
         if event.type == pygame.QUIT:
             sys.exit()
+        # Start the game if the player click Play button with the mouse
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            x,y = event.pos
+            if play_button.rect.collidepoint(x,y):
+                stats.run_game = True
         # If the arrow Keys are pressed, we move the ship
         elif event.type == pygame.KEYDOWN:
-            check_keydown_event(event, ai_settings, screen, ship, bullets)
+            check_keydown_event(event, ai_settings, screen, ship, bullets, stats)
         # When the arrow keys are released, we stop the movement
         elif event.type == pygame.KEYUP:
             check_keyup_event(event,ship)
