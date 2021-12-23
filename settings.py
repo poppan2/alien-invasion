@@ -17,7 +17,7 @@ class Settings():
         self.bullets_limit = 10
 
         # Alien settings
-        self.alien_speed_y = 100
+        self.alien_speed_y = 10
         self.alien_score = 50
 
         # Game SpeedUp settings
@@ -28,7 +28,7 @@ class Settings():
     def initial_speed(self):
         self.ship_speed = 1.5
         self.bullet_speed = 3
-        self.alien_speed_x = 10
+        self.alien_speed_x = 1
         self.alien_direction = 1
 
     def increase_speed(self):
