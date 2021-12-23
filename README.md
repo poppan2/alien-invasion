@@ -6,11 +6,13 @@ This is an alien invader game written using pygame library. Pygame is a powerful
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+## Prerequisites
 
-You'll need to install python packages with pip/pip3
+You'll need to install the following packages:
+* python packages with pip/pip3
+* pygame
 
-## Checking for pip on Linux and OS X
+### Checking for pip on Linux and OS X
 ```
 pip/pip3 --version
 ```
@@ -23,24 +25,27 @@ If you have more than one version of Python on your system, verify that pip is a
 If you can't run the pip command, try installing pip
 
 
-### Installing
+## Installing
 
-## Installing pip on Linux and OS X
+### Installing pip on Linux and OS X
 ```sudo python get-pip.py```
+After the program runs, use the command ```pip --version``` (or ```pip3 --version```) to make sure pip was installed correctly.
 
-Say what the step will be
+### Installing pygame on OS X
+To install the libraries that Pygame depends on, enter the following command:
+```brew install hg sdl sdl_image sdl_ttf```
+This will install the libraries needed to run the Alien Invasion. 
 
+If you also want to enable more advanced functionality, such as including sound in games, ou can install two additional libraries (optional):
+```brew install sdl_mixer portmidi```
+
+To install the pygame, use the following command:
+```pipe3 install pygame```
+To check whether the installation was successful, start a Python terminal session and import Pygame as follow:
+```python3
+>>> import pygame
+>>>
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
