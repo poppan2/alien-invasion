@@ -1,4 +1,6 @@
 import pygame.font
+from ship import Ship
+from pygame.sprite import Group
 
 class Score_Board():
     """A class to store score information"""
@@ -14,6 +16,7 @@ class Score_Board():
         self.show_score()
         self.show_level()
         self.show_high_score()
+        self.show_ships()
 
     def show_score(self):
         """Render the text and show it as the score"""
@@ -45,7 +48,6 @@ class Score_Board():
         self.high_score_value_img_rect.centerx = self.high_score_str_img_rect.centerx
         self.high_score_value_img_rect.bottom = self.screen_rect.bottom - 10
     
-    
     def show_level(self):
         """Render the text and show it as the lvl"""
         lvl_str = "Level"
@@ -61,6 +63,14 @@ class Score_Board():
         self.lvl_value_img_rect.centerx = self.lvl_str_img_rect.centerx
         self.lvl_value_img_rect.top = self.screen_rect.top + 30
 
+    def show_ships(self):
+        """Render the space ships on the screen"""
+        self.space_ships = Group()
+        for num_ship in range(self.stats.ships_left):
+            space_ship = Ship(self.ai_settings, self.screen)
+            space_ship.rect.x = 10 + space_ship.rect.width * num_ship
+            space_ship.rect.bottom = self.screen_rect.bottom - 10
+            self.space_ships.add(space_ship)
 
     def blit_score(self):
         """Draw the rendered image on the screen"""
@@ -70,3 +80,4 @@ class Score_Board():
         self.screen.blit(self.high_score_value_img, self.high_score_value_img_rect)
         self.screen.blit(self.lvl_str_img, self.lvl_str_img_rect)
         self.screen.blit(self.lvl_value_img, self.lvl_value_img_rect)
+        self.space_ships.draw(self.screen)
