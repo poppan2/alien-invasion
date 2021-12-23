@@ -40,7 +40,7 @@ def change_direction(ai_settings, screen, aliens):
             ai_settings.alien_direction *= -1
             break
 
-def check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens):
+def check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens, score_board):
     """Respond to key press"""
     if event.key == pygame.K_RIGHT:
         # Move the ship to the right.
@@ -64,6 +64,8 @@ def check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens
     elif event.key == pygame.K_p and not stats.run_game:
         # Reset the game settings
         ai_settings.initial_speed()
+        # Reset the Scoreboard
+        reset_the_scoreboard(score_board)
         # Reset the game
         reset_the_stats(stats)
         reset_the_screen(ai_settings, screen, aliens, bullets, ship)
@@ -95,16 +97,24 @@ def check_events(ai_settings, screen, ship, bullets, play_button, stats, aliens,
             if play_button.rect.collidepoint(x,y) and not stats.run_game:
                 # Reset the game settings
                 ai_settings.initial_speed()
+                # Reset the scoreboard
+                reset_the_scoreboard(score_board)
                 # Reset the game
                 reset_the_stats(stats)
                 reset_the_screen(ai_settings, screen, aliens, bullets, ship)
                 pygame.time.delay(200)
         # If the arrow Keys are pressed, we move the ship
         elif event.type == pygame.KEYDOWN:
-            check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens)
+            check_keydown_event(event, ai_settings, screen, ship, bullets, stats, aliens, score_board)
         # When the arrow keys are released, we stop the movement
         elif event.type == pygame.KEYUP:
             check_keyup_event(event,ship)
+
+def reset_the_scoreboard(score_board):
+    score_board.show_score()
+    score_board.show_high_score()
+    score_board.show_level()
+    score_board.show_ships()
 
 def reset_the_stats(stats):
     # Hide the mouse cursor
@@ -120,11 +130,13 @@ def reset_the_screen(ai_settings, screen, aliens, bullets, ship):
     create_alien_fleet(ai_settings, screen, aliens, ship)
     ship.center()
 
-def restart_the_game(ai_settings, stats, screen, ship, aliens, bullets):
+def restart_the_game(ai_settings, stats, screen, ship, aliens, bullets, score_board):
     """Restart the game from the initial set up"""
     if stats.ships_left > 0:
         # Reduce one life when the ship has been hit
         stats.ships_left -= 1
+        # Update ship lives
+        score_board.show_ships()
         # Reset the screen
         reset_the_screen(ai_settings, screen, aliens, bullets, ship)
         # Pause for 1s
@@ -133,27 +145,19 @@ def restart_the_game(ai_settings, stats, screen, ship, aliens, bullets):
         stats.run_game = False
         pygame.mouse.set_visible(True)
 
-def check_ship_collision(ai_settings, stats, screen, ship, aliens, bullets):
-    """Respond when an alien hit the ship"""
-    restart_the_game(ai_settings, stats, screen, ship, aliens, bullets)
-
-def check_alien_reach_bottom(ai_settings, stats, screen, ship, aliens, bullets):
-    """Check whether an alien has reached the bottom of the screen"""
-    screen_rect = screen.get_rect()
-    for alien in aliens.sprites():
-        if alien.rect.bottom >= screen_rect.bottom - 50:
-            restart_the_game(ai_settings, stats, screen, ship, aliens, bullets)
-            break
-
-def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
+def update_aliens(ai_settings, stats, screen, ship, aliens, bullets, score_board):
     """Update the position of aliens"""
     change_direction(ai_settings, screen, aliens)
     aliens.update()
     # Check whether any alien has hit the ship
     if pygame.sprite.spritecollideany(ship, aliens):
-        check_ship_collision(ai_settings, stats, screen, ship, aliens, bullets)
+        restart_the_game(ai_settings, stats, screen, ship, aliens, bullets, score_board)
     # Update restart when an alien reached the bottom of the screen
-    check_alien_reach_bottom(ai_settings, stats, screen, ship, aliens, bullets)
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom - 50:
+            restart_the_game(ai_settings, stats, screen, ship, aliens, bullets, score_board)
+            break
 
 def update_ship(ship):
     """Update the position of the ship"""
