@@ -49,63 +49,29 @@ To install the pygame, use the following command:
 ```
 pipe3 install pygame
 ```
-To check whether the installation was successful, start a Python terminal session and import Pygame as follow:
+To check whether the installation was successful, start a Python terminal session and import pygame as follow:
 ```
 python3
 >>> import pygame
 >>>
 ```
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+If you are on a different system, please check/look up how to install such packages on your particular system.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Since this game is built using pygame, no deployment is necessary. Just install the aforementioned packages and you'll be able to play it on your own local system.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [python3](https://docs.python.org/3/) -  The core language
+* [pygame](https://www.pygame.org/docs/) - The Python library used
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Ye Aung** - *Initial work* - [Github](https://github.com/poppan2)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Python Crash Course by Eric Matthes
+* I grew up playing Galaga, and I've always enjoyed it. I came across this python crash course book by Eric Matthes while I was learning Python on my own. I felt so excited and can't wait to recreate a much simpler version of the Galaga game. 
