@@ -3,89 +3,73 @@
 ## Project Links
 
 - [Github Repo](https://github.com/poppan2/alien-invasion)
-- [Deployed Site]()
 
 ## Project Description
 
-Being a game lover, and wanting to be a game dev myself, I've always wanted to build a game. Henceforth, I'm stretching my skills to build an Alien Invasion game using Python (Pygame). This game will have a ship that moves right and left, and fires bullets to destroy a fleet of aliens in response to player input. Inspired by Battlestar Galactica/Galaga game. 
+Being a game lover, and wanting to be a game dev myself, I've always wanted to build a game. Henceforth, I'm stretching my skills to build an Alien Invasion game using pygame(Python library)). This game will have a ship that moves right and left, and fires bullets to destroy a fleet of aliens in response to player input. Inspired by Galaga game. 
 
 ## Wireframes
 
-- [Landing Page](https://imgur.com/witmlcG)
 - [Game Page](https://imgur.com/N0VpPAj)
-- [Leaderboard Page (PostMVP)](https://imgur.com/oOcwsk0)
-- [About Page](https://imgur.com/lGciait)
-
-## React Architecture Tree
-I am not certain if I can integrate React into Python, I'll have to figure that out. However, the following would
-be the structure I'd use to design my app regardless of a framework/library.  
-
-- App
-  - Header
-  - Body
-    - Menu/Landing Page
-    - Game Page
-      - Score
-      - Timer
-      - Grid
-    - Leaderboard Page
-      - User
-    - About Page
-  - Footer
 
 ### MVP/PostMVP
 
 #### MVP
 
-- Set up a landing page with info about the game
-- Create a ship that can move left/right (Haven't)
-- Create a fleet of aliens to destroy (using dictionaries in Python)
+- Create a ship that can move left/right 
+- Create a fleet of aliens to destroy 
 - Continue to make refinements, such as setting limits on the number of ships a user can use, 
   increasing the difficulties, etc...
-- Add a Scoreboard and a Leader Board
-- Finally, add an about page to give a deep explanation about the game, inspirations and contact links
+- Add a Scoreboard
 
 #### PostMVP
 
-- Add Bonus features such as increase in fire power/difficulties, restore lives etc ...
+- Add Bonus features such as increase in fire power/difficulties, restore lives, Leader Board etc ...
 
 ## Components
 
 | Component                 |                                  Description                                  |
 | ------------------------- | :---------------------------------------------------------------------------: |
-| App                       |                       Contains Header, Body, and Footer                       |
-| Header                    |         Include nav bar linking to Menu, Game, Leaderboard          |
-| Body                      |              In depth view of Menu, Game, Leaderboard               |
-| Footer                    |                                Copyright text                                 |
-| Menu/Landing Page         |                  View for user to get familiar with the game                   |
-| Game Page                 |  View for user to play the game itself. Contain a ship, aliens, & ascore board   |
-| Score                     |              User score calculated based on number of aliens destroyed        |
-| About                     | Description of the game, inspiration, and link to other game and github repos |
-| Leaderboard Page(PostMVP) |      Leaderboard of user scores, sorted by highest to lowest      |
-| User                      |                              User name and score                              |
+| Ship                      | Create a space ship that can move left, right, up, down                       |
+| Bullets                   | Allow the ship to shoot bullets                                               |
+| Aliens                    | Create a fleet of aliens that can move right, left, down & kill the ship      |
+| Game Page                 | View for user to play the game itself. Contain a ship, aliens, & ascore board |
+| Score                     | User score calculated based on number of aliens destroyed                     |
+| Leaderboard Page(PostMVP) | Leaderboard of user scores, sorted by highest to lowest                       |
 
 
 | Component           | Priority | Estimated Time | Actual Time |
 | ------------------- | :------: | :------------: | :---------: |
-| Setting up App      |    H     |      2hrs      |             |
-| Setting up Routes   |    H     |      2hrs      |             |
-| Setting up game     |    H     |     48hrs      |             |
-| Game functionality  |    H     |     10hrs      |             |
-| User Lives          |    M     |      2hrs      |             |
-| Score               |    M     |      3hrs      |             |
-| Leaderboard         |    L     |     10hrs      |             |
-| Bonus Functionality |    M     |     15hrs      |             |
-| Total               |          |     92hrs      |             |
+| Setting up App      |    H     |      2hrs      |     0hrs    |
+| Setting up Routes   |    H     |      2hrs      |     0hrs    |
+| Setting up game     |    H     |     48hrs      |    25hrs    |
+| Game functionality  |    H     |     10hrs      |    35hrs    |
+| User Lives          |    M     |      2hrs      |     2hrs    |
+| Score               |    M     |      3hrs      |     3hrs    |
+| Leaderboard         |    L     |     10hrs      |     0hrs    |
+| Bonus Functionality |    M     |     15hrs      |     0hrs    |
+| Total               |          |     92hrs      |    65hrs    |
 
 ## Additional Libraries
 Pygame
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description. Code snippet should not be greater than 10 lines of code.
+Use this section to include a brief code snippet of functionality that you are proud of and a brief description. Code snippet should not be greater than 10 lines of code.
 
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
+def change_direction(ai_settings, screen, aliens):
+    """Change direction of aliens upon reaching the screen edges"""
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        # Check if an alien is at the edge of the screen
+        if (alien.rect.right >= screen_rect.right) or alien.rect.left <= 0:
+        # if alien.check_alien_edges():
+            for alien in aliens.sprites():
+                # Drop down by the unit of alien_speed 
+                alien.rect.y += ai_settings.alien_speed_y
+            # Change the direction of the alien fleet
+            ai_settings.alien_direction *= -1
+            break
 ```
+This code checks the aliens against the screen edges and move down then change direction.
