@@ -1,4 +1,5 @@
 import pygame.font
+
 class Play_Button():
     """A Class to create a play button"""
     def __init__(self, screen):
