@@ -28,21 +28,30 @@ If you can't run the pip command, try installing pip
 ## Installing
 
 ### Installing pip on Linux and OS X
-```sudo python get-pip.py```
+```
+sudo python get-pip.py
+```
 After the program runs, use the command ```pip --version``` (or ```pip3 --version```) to make sure pip was installed correctly.
 
 ### Installing pygame on OS X
 To install the libraries that Pygame depends on, enter the following command:
-```brew install hg sdl sdl_image sdl_ttf```
+```
+brew install hg sdl sdl_image sdl_ttf
+```
 This will install the libraries needed to run the Alien Invasion. 
 
 If you also want to enable more advanced functionality, such as including sound in games, ou can install two additional libraries (optional):
-```brew install sdl_mixer portmidi```
+```
+brew install sdl_mixer portmidi
+```
 
 To install the pygame, use the following command:
-```pipe3 install pygame```
+```
+pipe3 install pygame
+```
 To check whether the installation was successful, start a Python terminal session and import Pygame as follow:
-```python3
+```
+python3
 >>> import pygame
 >>>
 ```
