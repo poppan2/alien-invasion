@@ -1,6 +1,6 @@
-# Project Title
+# Alien Invasion
 
-One Paragraph of project description goes here
+This is an alien invader game written using pygame library. Pygame is a powerful Python modules that manage graphics, animation, and even sound, making it easier for users to build sophisticated games. In this particular game, a user is given a ship at the bottom center of the screen. A ship will be able to move left, right, top, bottom and shoot bullets at the aliens who are invading the screen from top down. A scoring, level, and ship lives are displayed at the bottom of the screen for the users to keep track of their score, level and lives. The game will be over once a user loses all lives, and will be able to play a new game from the beginning.
 
 ## Getting Started
 
@@ -8,15 +8,25 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You'll need to install python packages with pip/pip3
 
+## Checking for pip on Linux and OS X
 ```
-Give examples
+pip/pip3 --version
 ```
+You should see the similar output 
+```
+pip 21.3.1 from /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pip (python 3.7)
+```
+If you have more than one version of Python on your system, verify that pip is associated with the version of Python you're using--for example, ```python 3.7 ``` in this case.
+
+If you can't run the pip command, try installing pip
+
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+## Installing pip on Linux and OS X
+```sudo python get-pip.py```
 
 Say what the step will be
 
